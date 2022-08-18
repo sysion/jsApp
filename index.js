@@ -23,7 +23,7 @@ const hsTemplate = (house) => `
   <div class='house'> 
 		<h1>${house.address}</h1>
 		<h2>${house.agent} <span>: ${house.code}</span></h2>
-		<img src=${house.url} alt=${house.code} />
+		<a><img src=${house.url} alt=${house.code} /></a>
 	</div>;
 `;
 
@@ -50,5 +50,28 @@ app.addItem({
 	}
 });
 
+app.addItem({
+	name: 'house',
+	model: {
+		house: {}
+	},
+	view(model){
+		return hsTemplate(model.house)
+	},
+	async controller(model){	
+		const house = await API.getHouse(router.params[1]);
+		model.house = house;
+	}
+});
+
 //app.showItem('houses');
 router.addRoute('houses', '^#/houses$');
+router.addRoute('house', '^#/houses/([0-9]+)$');
+
+
+// footer information
+var ptarget = document.querySelector('footer p');
+var date = new Date();
+var year = date.getFullYear();
+//console.log(year);
+ptarget.innerHTML = '&copy;'+year+' Sysion Nigeria Ltd';

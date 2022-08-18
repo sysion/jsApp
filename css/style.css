@@ -25,6 +25,12 @@ header{
 	height: 5vh;
 }
 
+header a{
+	text-decoration: none;
+	color: #e94529;
+	padding: 2rem;
+}
+
 main{
 	min-height: calc(100vh - 10vh);
 	color: white;
@@ -34,4 +40,11 @@ footer{
 	background-color: white;
 	color: black;
 	height: 5vh;
+}
+
+footer p{
+	font-size: 1.8rem;
+	color: #e94529;
+	text-align: center;
+	line-height: 5vh;
 }
