@@ -23,8 +23,10 @@ const hsTemplate = (house) => `
   <div class='house'> 
 		<h1>${house.address}</h1>
 		<h2>${house.agent} <span>: ${house.code}</span></h2>
-		<a><img src=${house.url} alt=${house.code} /></a>
-	</div>;
+		<a href="#/houses/${house.id}"> 
+			<img src=${house.url} alt=${house.code} /> 
+		</a>
+	</div>
 `;
 
 app.addItem({
@@ -56,7 +58,12 @@ app.addItem({
 		house: {}
 	},
 	view(model){
-		return hsTemplate(model.house)
+		//return hsTemplate(model.house)
+		return `
+			<ul class='houses'>
+				${`<li>${hsTemplate(model.house)}</li>`}
+			</ul>
+		`;
 	},
 	async controller(model){	
 		const house = await API.getHouse(router.params[1]);
