@@ -35,7 +35,6 @@ app.addItem({
 		houses: []
 	},
 	view(model){
-		//return `<h2>There are ${model.houses.length} houses.</h2>`;
 
 		return `
 			<ul class='houses'>
@@ -43,12 +42,10 @@ app.addItem({
 			</ul>
 		`;
 	},
-	//controller reaches out to the API to get the data, then update the model and the view then changes based on the updated model
+
 	async controller(model){	
 		const houses = await API.getHouses();
-		//console.log(houses);
 		model.houses = houses;
-		//app.updateView();
 	}
 });
 
@@ -58,7 +55,6 @@ app.addItem({
 		house: {}
 	},
 	view(model){
-		//return hsTemplate(model.house)
 		return `
 			<ul class='houses'>
 				${`<li>${hsTemplate(model.house)}</li>`}
@@ -71,14 +67,10 @@ app.addItem({
 	}
 });
 
-//app.showItem('houses');
 router.addRoute('houses', '^#/houses$');
 router.addRoute('house', '^#/houses/([0-9]+)$');
 
-
-// footer information
 var ptarget = document.querySelector('footer p');
 var date = new Date();
 var year = date.getFullYear();
-//console.log(year);
 ptarget.innerHTML = '&copy;'+year+' Sysion Nigeria Ltd';
